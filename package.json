@@ -28,7 +28,7 @@
     "rlp": "^2.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.4",
+    "coveralls": "^2.13.2",
     "istanbul": "^0.4.1",
     "standard": "^10.0.0",
     "tape": "^4.0.3"
