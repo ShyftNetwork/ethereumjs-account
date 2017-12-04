@@ -17,7 +17,7 @@
     "ethereum",
     "account"
   ],
-  "author": "mjbecze (mjbecze@gmail.com)",
+  "author": "cf (chris@shyft.network)",
   "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/ethereumjs/ethereumjs-account/issues"
