@@ -39,6 +39,10 @@ Account.prototype.isContract = function () {
     return this.codeHash.toString('hex') !== ethUtil.SHA3_NULL_S
 }
 
+Account.prototype.hasVerificationContract = function () {
+    return this.verificationContract.toString('hex') !== ethUtil.SHA3_NULL_S
+}
+
 Account.prototype.getCode = function (state, cb) {
     if (!this.isContract()) {
         cb(null, Buffer.alloc(0))
@@ -119,8 +123,8 @@ Account.prototype.setIdentity = function (trie, key, val, cb) {
 }
 
 
-Account.prototype.getCode = function (state, cb) {
-    if (!this.isContract()) {
+Account.prototype.getVerificationContract = function (state, cb) {
+    if (!this.hasVerificationContract()) {
         cb(null, Buffer.alloc(0))
         return
     }
