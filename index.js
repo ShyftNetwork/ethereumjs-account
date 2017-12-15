@@ -73,27 +73,6 @@ Account.prototype.getStorage = function (trie, key, cb) {
   t.get(key, cb)
 }
 
-Account.prototype.setCode = function (trie, code, cb) {
-  var self = this
-
-  this.codeHash = ethUtil.sha3(code)
-
-  if (this.codeHash.toString('hex') === ethUtil.SHA3_NULL_S) {
-    cb(null, Buffer.alloc(0))
-    return
-  }
-
-  trie.putRaw(this.codeHash, code, function (err) {
-    cb(err, self.codeHash)
-  })
-}
-
-Account.prototype.getStorage = function (trie, key, cb) {
-  var t = trie.copy()
-  t.root = this.stateRoot
-  t.get(key, cb)
-}
-
 Account.prototype.setStorage = function (trie, key, val, cb) {
   var self = this
   var t = trie.copy()
