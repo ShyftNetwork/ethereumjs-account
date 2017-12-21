@@ -11,10 +11,6 @@ var Account = module.exports = function (data) {
     name: 'balance',
     default: Buffer.alloc(0)
   }, {
-    name: 'identityRoot',
-    length: 32,
-    default: ethUtil.SHA3_RLP
-  }, {
     name: 'stateRoot',
     length: 32,
     default: ethUtil.SHA3_RLP
@@ -22,12 +18,7 @@ var Account = module.exports = function (data) {
     name: 'codeHash',
     length: 32,
     default: ethUtil.SHA3_NULL
-  }, {
-    name: 'verificationContract',
-    length: 32,
-    default: 0
   }]
-
   ethUtil.defineProperties(this, fields, data)
 }
 
@@ -37,10 +28,6 @@ Account.prototype.serialize = function () {
 
 Account.prototype.isContract = function () {
   return this.codeHash.toString('hex') !== ethUtil.SHA3_NULL_S
-}
-
-Account.prototype.hasVerificationContract = function () {
-  return this.verificationContract.toString('hex') !== ethUtil.SHA3_NULL_S
 }
 
 Account.prototype.getCode = function (state, cb) {
@@ -81,48 +68,6 @@ Account.prototype.setStorage = function (trie, key, val, cb) {
     if (err) return cb()
     self.stateRoot = t.root
     cb()
-  })
-}
-
-Account.prototype.getIdentity = function (trie, key, cb) {
-  var t = trie.copy()
-  t.root = this.identityRoot
-  t.get(key, cb)
-}
-
-Account.prototype.setIdentity = function (trie, key, val, cb) {
-  var self = this
-  var t = trie.copy()
-  t.root = self.identityRoot
-  t.put(key, val, function (err) {
-    if (err) return cb()
-    self.identityRoot = t.root
-    cb()
-  })
-}
-
-
-Account.prototype.getVerificationContract = function (state, cb) {
-  if (!this.hasVerificationContract()) {
-    cb(null, Buffer.alloc(0))
-    return
-  }
-
-  state.getRaw(this.verificationContract, cb)
-}
-
-Account.prototype.setVerificationContract = function (trie, code, cb) {
-  var self = this
-
-  this.verificationContract = ethUtil.sha3(code)
-
-  if (this.verificationContract.toString('hex') === ethUtil.SHA3_NULL_S) {
-    cb(null, Buffer.alloc(0))
-    return
-  }
-
-  trie.putRaw(this.verificationContract, code, function (err) {
-    cb(err, self.verificationContract)
   })
 }
 
