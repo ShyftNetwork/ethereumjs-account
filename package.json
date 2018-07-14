@@ -1,11 +1,11 @@
 {
-  "name": "ethereumjs-account",
-  "version": "2.0.3",
+  "name": "@shyftnetwork/shyft_ethereumjs-account",
+  "version": "2.0.4",
   "description": "Encoding, decoding and validation of Ethereum's Account schema",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethereumjs/ethereumjs-account.git"
+    "url": "git+https://github.com/shyftnetwork/shyft_ethereumjs-account.git"
   },
   "scripts": {
     "coverage": "istanbul cover ./test/index.js",
@@ -20,9 +20,9 @@
   "author": "cf (chris@shyft.network)",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ethereumjs/ethereumjs-account/issues"
+    "url": "https://github.com/shyftnetwork/shyft_ethereumjs-account/issues"
   },
-  "homepage": "https://github.com/ethereumjs/ethereumjs-account#readme",
+  "homepage": "https://github.com/shyftnetwork/shyft_ethereumjs-account#readme",
   "dependencies": {
     "ethereumjs-util": "^5.0.0",
     "rlp": "^2.0.0",
