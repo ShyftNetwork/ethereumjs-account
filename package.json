@@ -26,7 +26,8 @@
   "dependencies": {
     "@shyftnetwork/shyft_ethereumjs-util": "^5.0.0",
     "rlp": "^2.0.0",
-    "safe-buffer": "^5.1.1"
+    "safe-buffer": "^5.1.1",
+    "standard": "^11.0.1"
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
