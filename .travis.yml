@@ -1,26 +1,24 @@
 language: node_js
 node_js:
-  - "6"
-  - "7"
-  - "8"
+- '6'
+- '7'
+- '8'
 env:
-  - CXX=g++-4.8
+  matrix:
+  - CXX=g++-4.8 TEST_SUITE=test
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-env:
-  matrix:
-    - CXX=g++-4.8 TEST_SUITE=test
 matrix:
   fast_finish: true
   include:
-    - os: linux
-      node_js: "6"
-      env: CXX=g++-4.8 TEST_SUITE=coveralls
-    - os: linux
-      node_js: "6"
-      env: CXX=g++-4.8 TEST_SUITE=lint
+  - os: linux
+    node_js: '6'
+    env: CXX=g++-4.8 TEST_SUITE=lint
 script: npm run $TEST_SUITE
+notifications:
+  slack:
+    secure: kKDJh+WyIBJWUClPoKeeJFwBSayH8kbAszF44GP/Eoqspzfhb+ekGFhF0MxRvLjsG3YcDwIDS5TQK42jm3uJj00vfyzfGd/rIn/4kFX8BTSLJwoOqzAZHwTF3UIxwL7bqZMYZ60mpKe0HA06tEp31MYkTmOpDCJ3HTuT+WpYbGcq8AaSGJmQ2tR44ueTef+1pvrwO0X0nWw1K/Xe8k0dxqKNXVgjJnNLvQm5VC1oEPyIo/TQEGCv4UEwsRviFUz7BtXXWMWTCGXEIz4i0J+swOXT7ts4jreBFpYGEFv0UzQ6Q3l84dJ3tTKPAsa0rqv9a673PRIXKHAbq9DdSJEKyQ8GqG7mVn6qR2VQcJFA9sWwQ3Nl8USnyiHgzO5iJAeQLsl02wsx8D/2zwQeX7ZjcRqdcyDtOS05vRSyHqbLnulCR07OohWC5hSOvQyJPOuNVgVRi+3KGgypvWMc5khxs2INFkhBi7zEPT8ZoLkSGqKFnHE9TM7cjlJHY0m/uCIQa/2GZK1UCXrbCHDPdH+k1L0joSnEdHi8NoBnFSu1kaNXWb2dUWo6kEk15r5BuYBfO1QXrztatOJSbEI9bjkuowqAdVNJSXxFxJGN87YLwDqzZMoDMp0bChrIBXLCSOs8kpSB/BashTXThTK8CTqqXuOlnAs1+Hm8IkE0v5OVbCw=
